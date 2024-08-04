@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINGVIGANG</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .extraction-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .extraction-container img {
+            width: 33.33px;
+            height: auto;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .extraction-item {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .cat-count {
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .task-container {
+            display: flex;
+            flex-wrap: wrap; /* Обтекание задач по горизонтали */
+            justify-content: flex-start; /* Выравнивание по левому краю */
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .task {
+            margin: 10px;
+            width: 48%; /* Ширина задач для горизонтального расположения */
+            min-width: 150px; /* Минимальная ширина для маленьких экранов */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative; /* Добавляем относительное позиционирование для .task */
+            background: linear-gradient(to right, #007fff, #66b3ff); /* Градиент */
+            font-family: 'MADE Waffle Soft', sans-serif; /* MADE Waffle Soft шрифт */
+        }
+
+        .control-button a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .task-title, .task-count {
+            color: white;
+        }
+        .control-panel {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: #ededed;
+            padding: 10px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1;
+        }
+
+        .control-button {
+            background-color: transparent;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 90px;
+        }
+
+        .control-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-button img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .control-button-text {
+            font-size: 12px;
+            font-family: "junegull";
+            text-align: center;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .task-container {
+                flex-direction: row; /* Горизонтальное расположение задач */
+                flex-wrap: wrap; /* Перенос задач на новую строку */
+            }
+
+            .control-panel {
+                flex-direction: row; /* Горизонтальное расположение кнопок */
+                align-items: center;
+            }
+
+            .control-button {
+                margin-right: 10px; /* Отступ между кнопками */
+                width: auto; /* Автоматическая ширина кнопок */
+            }
+
+            /* Дополнительное стилирование для задач на телефонах */
+            .task {
+                width: 100%; /* Занимает всю ширину экрана на мобильном */
+                margin-bottom: 10px; /* Отступ снизу */
+            }
+
+            /* Стиль для картинки карты */
+            #mapsImage {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('EROR43-vmake.jpg'); 
+                background-size: cover;
+                display: none;
+                z-index: 1; 
+                overflow-x: auto;
+            }
+        }
+
+        /* Стиль для контейнера с кнопками */
+        .control-buttons-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        /* Шрифт по умолчанию */
+        @font-face {
+            font-family: 'junegull';
+            src: url('junegull.ttf') format('truetype');
+        }
+
+        /* Снег */
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .flake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: fall 10s linear infinite;
+        }
+
+        /* Анимация падения снежинок */
+        @keyframes fall {
+            0% {transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(0, 100%);
+                opacity: 0;
+            }
+        }
+
+        /* Добавляем стили для разных типов снежинок */
+        .flake-small {
+            width: 5px;
+            height: 5px;
+            animation-duration: 5s;
+        }
+
+        .flake-large {
+            width: 15px;
+            height: 15px;
+            animation-duration:
+            15s;
+        }
+
+        .flake-medium {
+            width: 10px;
+            height: 10px;
+            animation-duration: 10s;
+        }
+
+        /* Стили для картинки пингвина */
+        .penguin-container {
+            position: relative; /* Добавляем относительное позиционирование */
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .penguin-container img {
+            width: 150px; /* Устанавливаем фиксированную ширину */
+            height: auto; /* Сохраняем пропорции */
+            position: relative; /* Позиционируем пингвина */
+            top: 50%; /* Позиционируем по центру по вертикали */
+            left: 50%; /* Позиционируем по центру по горизонтали */
+            transform: translate(-50%, -50%); /* Выравниваем по центру */
+        }
+
+        /* Стили для флажка Антарктики */
+        .antarctica-flag {
+            width: 600px; /* Увеличиваем ширину в 4 раза */
+            height: auto; /* Сохраняем пропорции */
+            display: block; /* Занимаем всю доступную ширину */
+            margin: 0 auto; /* Выравниваем по центру */
+            position: absolute; /* Позиционируем флаг */
+            top: 50%; /* Позиционируем по центру по вертикали */
+            left: 50%; /* Позиционируем по центру по горизонтали */
+            transform: translate(-50%, -50%); /* Выравниваем по центру */
+            z-index: -1; /* Флаг позади пингвина */
+        }
+    </style>
+</head>
+<body>
+    <div id="mapsImage" style="display: none;">
+        <img src="EROR43-vmake.jpg" alt="Карта" style="width: 100%; height: auto;">
+    </div>
+    <div class="container" id="content">
+        <div class="row" id="homeContent">
+            <div class="col-12 text-center">
+                <div class="header">
+
+                    <h4>Пингвины — нелетающие птицы, обитающие в основном в Южном полушарии.</h4>
+                </div> 
+            </div>
+        </div>
+        <div class="row" id="catCountContent">
+            <div class="col-12">
+                <div class="penguin-container">
+                    <img src="https://www.flagistrany.ru/data/flags/w1600/aq.png" alt="Antarctica Flag" class="antarctica-flag img-fluid mx-auto d-block"> 
+                    <img src="vin.png" alt="tuxedo penguin" width="150" height="150" class="img-fluid mx-auto d-block">
+                </div>
+                <div class="extraction-container">
+                    <div class="extraction-item">
+                        <h4>extraction </h4>
+
+                    </div>
+                    <div class="extraction-item">
+                        <p><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20enable-background%3D%22new%200%200%20512%20512%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22%236EC5A8%22%20d%3D%22M489.7%2C311.2l-141.3-22.8C344%2C132.1%2C231.5%2C22.2%2C74.1%2C22.2H22.2v51.8c0%2C157.4%2C109.9%2C269.9%2C266.2%2C274.4%20%20%20%20l22.8%2C141.3L385%2C385L489.7%2C311.2z%22%2F%3E%3Cpath%20fill%3D%22%2351A787%22%20d%3D%22M311.2%2C511c-1.6%2C0-3.2-0.2-4.8-0.5c-8.4-1.9-14.8-8.8-16.2-17.3l-20-124.3C110.8%2C356.3%2C1%2C237.4%2C1%2C74.1%20%20%20%20V22.3C1%2C10.5%2C10.5%2C1%2C22.2%2C1h51.8c163.3%2C0%2C282.2%2C109.8%2C294.7%2C269.2l124.3%2C20c8.5%2C1.4%2C15.4%2C7.8%2C17.3%2C16.2c1.9%2C8.4-1.4%2C17.2-8.5%2C22.2%20%20%20%20l-101.7%2C71.6L328.6%2C502C324.6%2C507.7%2C318%2C511%2C311.2%2C511z%20M43.5%2C43.5v30.6c0%2C144.9%2C101%2C249%2C245.6%2C253.2c10.2%2C0.3%2C18.8%2C7.8%2C20.4%2C17.9%20%20%20%20l14.5%2C89.7l43.7-62.1c1.4-2%2C3.1-3.7%2C5.1-5.1l62.1-43.7l-89.7-14.5c-10.1-1.6-17.6-10.2-17.9-20.4C323.1%2C144.5%2C219%2C43.5%2C74.1%2C43.5%20%20%20%20H43.5z%22%2F%3E%3Cg%3E%3Cline%20x1%3D%22112.9%22%20x2%3D%22114.4%22%20y1%3D%2299.8%22%20y2%3D%22101.3%22%20fill%3D%22%23FBCA60%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M114.4%2C122.6c-5.4%2C0-10.9-2.1-15-6.2l-1.5-1.5c-8.3-8.3-8.3-21.7%2C0-30s21.7-8.3%2C30%2C0l1.5%2C1.5%20%20%20%20c8.3%2C8.3%2C8.3%2C21.7%2C0%2C30C125.3%2C120.5%2C119.8%2C122.6%2C114.4%2C122.6z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Fish Icon" style="width: 28.33px; height: auto; margin-bottom: 8px;"> +15 hours </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="tasksContent">
+            <div class="col-12">
+                <h2 class="tasks-header">Tasks</h2>
+                <div class="task-container">
+                    <div class="task">
+                        <div class="task-title">Boost PINGVI channel</div>
+                        <div class="task-count">50 CATS</div>
+                        <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+                       <span style="color: rgb(68, 224, 255);"> выполнить </span>  
+                       </a>
+                          </div>
+                       <div class="task">
+                       <div class="task-title">Subscribe to Channel</div>
+                       <div class="task-count">100 $PINGVI</div>
+                       
+                       <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+                        <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить задание </span>  
+                         </a>
+                   </div>
+                   <div class="task">
+                        <div class="task-title">LOZZ</div>
+                        <div class="task-count">100 $PINGVI</div>
+                       
+                       <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+                        <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить LOZZ </span>  
+                         </a>
+                   </div>
+                   <div class="task">
+                        <div class="task-title">Other task</div>
+                        <div class="task-count">100 $PINGVI</div>
+                       
+                       <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+                        <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить задание </span>  
+                         </a>
+                   </div>
+
+                </div>
+                <button class="btn btn-secondary">Show more tasks</button>
+            </div>
+        </div>
+        <div class="row" id="fridgeContent" style="display: none;">
+            <div class="col-12 text-center">
+                <h2>Fridge</h2>
+                <ul id="fridgeList">
+                    <li>Milk</li>
+                    <li>Eggs</li>
+                    <li>Cheese</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="control-buttons-container">
+                <div class="control-button" id="fridgeButton">
+                    <img src="холодос.PNG" alt="Холодильник">
+                    <div class="control-button-text">Fridge</div>
+                </div>
+                <div class="control-button" id="homeButton">
+                    <img src="home.PNG" alt="Домой">
+                    <div class="control-button-text">Home</div>
+                </div>
+                <div class="control-button" id="mapsButton">
+                    <img src="icebearg.PNG" alt="Друзья">
+                    <div class="control-button-text">Maps</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fridgeButton = document.getElementById('fridgeButton');
+        const homeButton = document.getElementById('homeButton');
+        const mapsButton = document.getElementById('mapsButton');
+        const homeContent = document.getElementById('homeContent');
+        const catCountContent = document.getElementById('catCountContent');
+        const tasksContent = document.getElementById('tasksContent');
+        const fridgeContent = document.getElementById('fridgeContent');
+        const mapsImage = document.getElementById('mapsImage');
+
+        fridgeButton.addEventListener('click', () => {
+            homeContent.style.display = 'none';
+            catCountContent.style.display = 'none';
+            tasksContent.style.display = 'none';
+            fridgeContent.style.display = 'block';
+            mapsImage.style.display = 'none';
+        });
+
+        homeButton.addEventListener('click', () => {
+            homeContent.style.display = 'block';
+            catCountContent.style.display = 'block';
+            tasksContent.style.display = 'block';
+            fridgeContent.style.display = 'none';
+            mapsImage.style.display = 'none';
+        });
+
+        mapsButton.addEventListener('click', () => {
+            homeContent.style.display = 'none';
+            catCountContent.style.display = 'none';
+            tasksContent.style.display = 'none';
+            fridgeContent.style.display = 'none';
+            mapsImage.style.display = 'block';
+        });
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
