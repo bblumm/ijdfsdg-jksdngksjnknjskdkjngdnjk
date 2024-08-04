@@ -304,6 +304,66 @@
         .extraction-container p {
             margin-bottom: 0; /* Убираем отступ снизу */
         }
+
+        /* Стиль для кругового таймера */
+        .timer-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .timer-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 10px solid #999; /* Серый цвет внешнего круга */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .timer-progress {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            clip-path: polygon(50% 50%, 100% 50%, 50% 100%); /* Форма треугольника */
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fdd835; /* Желтый цвет прогресса */
+        }
+
+        .timer-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffd700; /* Золотой цвет центра */
+            border-radius: 50%;
+        }
+
+        .timer-center img {
+            width: 80%;
+            height: auto;
+        }
+
+        .timer-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -379,6 +439,16 @@
     </div>
     <div class="row" id="fridgeContent" style="display: none;">
         <div class="col-12 text-center">
+            <div class="task" style="margin-bottom: 20px;">
+                <div class="task-title">EVERY DAY TASKS  </div>
+                <div class="task-count">ㅤ</div>
+                <div class="task-count"></div>
+                <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+                    <span style="color: rgb(255, 255, 255);"> CHECK OUT OUR PLANS FOR</span> 
+
+                    <span style="color: rgba(255, 255, 255, 0.425);"> RUN THE TASKS !</span> 
+                </a>
+            </div>
             <h2>Fridge</h2>
             <ul id="fridgeList">
                 <li>Milk</li>
@@ -413,7 +483,7 @@
          "Пингвины могут нырять на глубину до 500 метров и оставаться под водой до 20 минут.",
          "Пингвины живут в колониях, насчитывающих сотни и даже тысячи особей.",
          "Пингвины общаются друг с другом с помощью различных звуков и движений.",
-         "Пингвины не мёрзнут в холодной воде благодаря толстому слою жира и перьям, образующим водонепроницаемую оболочку.",
+         "Пингвины не мёрзнут в холодной воде благодаря толстому слою жира и перьям.",
          "Пингвины — социальные птицы и часто образуют пары на всю жизнь.",
          "Глаза пингвинов устроены таким образом, что они могут видеть под водой и на суше."
      ];
@@ -430,7 +500,7 @@
      const mapsButton = document.getElementById('mapsButton');
      const homeContent = document.getElementById('homeContent');
      const catCountContent = document.getElementById('catCountContent');
-     const tasksContent = document.getElementById('tasksContent');
+     const tasksContent = document.getElementById('tasksContent'); 
      const fridgeContent = document.getElementById('fridgeContent');
      const mapsImage = document.getElementById('mapsImage');
  
@@ -438,14 +508,14 @@
          homeContent.style.display = 'none';
          catCountContent.style.display = 'none';
          tasksContent.style.display = 'none';
-         fridgeContent.style.display = 'block';
+         fridgeContent.style.display = 'block'; 
          mapsImage.style.display = 'none';
      });
  
      homeButton.addEventListener('click', () => {
          homeContent.style.display = 'block';
          catCountContent.style.display = 'block';
-         tasksContent.style.display = 'block';
+         tasksContent.style.display = 'block'; 
          fridgeContent.style.display = 'none';
          mapsImage.style.display = 'none';
      });
@@ -464,4 +534,6 @@
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </body>
- </html>
+</html>
+
+
