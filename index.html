@@ -450,6 +450,25 @@
         </div>
     </div>
     
+   
+    <div class="control-panel">
+        <div class="control-buttons-container">
+            <div class="control-button" id="fridgeButton">
+ 
+    
+                <img src="https://raw.githubusercontent.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/main/холодос.png" alt="Холодильник">
+                <div class="control-button-text">Fridge</div>
+            </div>
+            <div class="control-button" id="homeButton">
+                <img src="https://github.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/blob/main/home.png?raw=true" alt="Домой">
+                <div class="control-button-text">Home</div>
+            </div>
+            <div class="control-button" id="mapsButton">
+                <img src="https://github.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/blob/main/icebearg.png?raw=true" alt="Друзья">
+                <div class="control-button-text">Maps</div>
+            </div>
+        </div>
+    </div>
     <div class="row" id="fridgeContent" style="display: none;">
         <div class="col-12 text-center">
             <div class="task" style="margin-bottom: 20px;">
@@ -466,8 +485,28 @@
             </div>
             
         </div>
-    </div>
     
+    <div id="myPopup">
+      <p id="message"></p>
+      <div class="row" id="fridgeContent">
+        <div class="col-12 text-center">
+          <div class="task" style="margin-bottom: 20px;">
+            <div class="task-title">Boost PINGVI channel</div>
+            <div class="task-count">50 CATS</div>
+            <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+              <span style="color: rgb(68, 224, 255);">выполнить</span>  
+            </a>
+          </div>
+          <div id="counter" style="font-size: 2em; color: rgb(49, 152, 255); margin-bottom: 30px;">0</div> 
+          <div class="image-container">
+            <img src="vin.png" alt="tuxedo penguin" width="150" height="150" class="img-fluid mx-auto d-block">
+            <div id="timer" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">0</div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
     <style>
     @font-face {
       font-family: 'Junegull';
@@ -505,6 +544,36 @@
       flex-direction: column;
       align-items: center;
     }
+    
+    /* Animation and glow styles */
+    .image-container img.active {
+      animation: pulse 1s infinite;
+      filter: drop-shadow(0 0 10px rgb(24, 243, 255)); /* Blue glow */
+    }
+    /* Popup styles */
+    #myPopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 1000;
+        display: none;
+      }
+  
+      /* Таймер */
+      #cooldownTimer {
+        font-size: 1em;
+        margin-top: 10px;
+        display: none;
+      }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
     </style>
     
     <script>
@@ -513,11 +582,12 @@
       let intervalId;
     
       const imageContainer = document.querySelector('.image-container');
+      const imageElement = document.querySelector('.image-container img'); // Get the image element
       const counterElement = document.getElementById('counter');
       const timerElement = document.getElementById('timer');
-    
       // Touch events for mobile support
       imageContainer.addEventListener('touchstart', () => {
+        imageElement.classList.add('active'); // Add the active class for animation and glow
         intervalId = setInterval(() => {
           counter += 15;
           counterElement.textContent = counter;
@@ -526,16 +596,19 @@
           if (timer >= 60) { // Stop at 60 seconds
             clearInterval(intervalId);
             alert("Time's up!");
+            imageElement.classList.remove('active'); // Remove the active class on timeout
           }
         }, 1000); // 1 second interval
       });
     
       imageContainer.addEventListener('touchend', () => {
         clearInterval(intervalId);
+        imageElement.classList.remove('active'); // Remove the active class on touch end
       });
     
       // Keep the 'mousedown' event for desktop support
       imageContainer.addEventListener('mousedown', () => {
+        imageElement.classList.add('active'); // Add the active class for animation and glow
         intervalId = setInterval(() => {
           counter += 15;
           counterElement.textContent = counter;
@@ -544,42 +617,29 @@
           if (timer >= 60) { // Stop at 60 seconds
             clearInterval(intervalId);
             alert("Time's up!");
+            imageElement.classList.remove('active'); // Remove the active class on timeout
           }
         }, 1000); // 1 second interval
       });
     
       imageContainer.addEventListener('mouseup', () => {
         clearInterval(intervalId);
+        imageElement.classList.remove('active'); // Remove the active class on mouse up
       });
     
       imageContainer.addEventListener('mouseout', () => {
         clearInterval(intervalId);
+        imageElement.classList.remove('active'); // Remove the active class on mouse out
       });
     </script>
     
+      
     
- 
-    <div class="control-panel">
-        <div class="control-buttons-container">
-            <div class="control-button" id="fridgeButton">
- 
-    
-                <img src="https://raw.githubusercontent.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/main/холодос.png" alt="Холодильник">
-                <div class="control-button-text">Fridge</div>
-            </div>
-            <div class="control-button" id="homeButton">
-                <img src="https://github.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/blob/main/home.png?raw=true" alt="Домой">
-                <div class="control-button-text">Home</div>
-            </div>
-            <div class="control-button" id="mapsButton">
-                <img src="https://github.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/blob/main/icebearg.png?raw=true" alt="Друзья">
-                <div class="control-button-text">Maps</div>
-            </div>
-        </div>
-    </div>
- </div>
- 
  <script>
+          const timerValueElement = document.getElementById('timerValue');
+          const cooldownTimerElement = document.getElementById('cooldownTimer');
+    
+          // Получаем время окончания кулдауна из localStorage
      const randomFactElement = document.getElementById('randomFact');
      const facts = [
          "Существует 18 видов пингвинов, каждый из которых имеет свои особенности.",
@@ -630,7 +690,11 @@
          fridgeContent.style.display = 'none';
          mapsImage.style.display = 'block';
      });
- 
+
+    
+    
+        
+    
  </script>
  
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
