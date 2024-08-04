@@ -163,6 +163,25 @@
                 z-index: 1; 
                 overflow-x: auto;
             }
+
+            /* Стили для пингвина */
+            .penguin-container img {
+                margin-bottom: -20px; /* Уменьшаем отступ снизу для пингвина */
+            }
+
+            /* Стили для блока "extraction" */
+            .extraction-container {
+                margin-top: -20px; /* Уменьшаем отступ сверху для блока "extraction" */
+            }
+
+            /* Стили для текста в блоке "extraction" */
+            .extraction-container h4 {
+                margin-bottom: 0; /* Убираем отступ снизу */
+            }
+
+            .extraction-container p {
+                margin-bottom: 0; /* Убираем отступ снизу */
+            }
         }
 
         /* Стиль для контейнера с кнопками */
@@ -285,25 +304,6 @@
         .extraction-container {
             margin-bottom: 0; /* Убираем отступ снизу */
         }
-
-        /* Стили для пингвина */
-        .penguin-container img {
-            margin-bottom: -10px; /* Уменьшаем отступ снизу для пингвина */
-        }
-
-        /* Стили для блока "extraction" */
-        .extraction-container {
-            margin-top: -10px; /* Уменьшаем отступ сверху для блока "extraction" */
-        }
-
-        /* Стили для текста в блоке "extraction" */
-        .extraction-container h4 {
-            margin-bottom: 0; /* Убираем отступ снизу */
-        }
-
-        .extraction-container p {
-            margin-bottom: 0; /* Убираем отступ снизу */
-        }
     </style>
 </head>
 <body>
@@ -370,86 +370,80 @@
                        
                        <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
                         <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить задание </span>  
-                    </a>
-              </div>
+                         </a>
+                   </div>
 
-           </div>
-           <button class="btn btn-secondary">Show more tasks</button>
-       </div>
-   </div>
-   <div class="row" id="fridgeContent" style="display: none;">
-       <div class="col-12 text-center">
-           <h2>Fridge</h2>
-           <ul id="fridgeList">
-               <li>Milk</li>
-               <li>Eggs</li>
-               <li>Cheese</li>
-           </ul>
-       </div>
-   </div>
+                </div>
+                <button class="btn btn-secondary">Show more tasks</button>
+            </div>
+        </div>
+        <div class="row" id="fridgeContent" style="display: none;">
+            <div class="col-12 text-center">
+                <h2>Fridge</h2>
+                <ul id="fridgeList">
+                    <li>Milk</li>
+                    <li>Eggs</li>
+                    <li>Cheese</li>
+                </ul>
+            </div>
+        </div>
 
-   <div class="control-panel">
-       <div class="control-buttons-container">
-           <div class="control-button" id="fridgeButton">
-               <img src="холодос.PNG" alt="Холодильник">
-               <div class="control-button-text">Fridge</div>
-           </div>
-           <div class="control-button" id="homeButton">
-               <img src="home.PNG" alt="Домой">
-               <div class="control-button-text">Home</div>
-           </div>
-           <div class="control-button" id="mapsButton">
-               <img src="icebearg.PNG" alt="Друзья">
-               <div class="control-button-text">Maps</div>
-           </div>
-       </div>
-   </div>
-</div>
+        <div class="control-panel">
+            <div class="control-buttons-container">
+                <div class="control-button" id="fridgeButton">
+                    <img src="холодос.PNG" alt="Холодильник">
+                    <div class="control-button-text">Fridge</div>
+                </div>
+                <div class="control-button" id="homeButton">
+                    <img src="home.PNG" alt="Домой">
+                    <div class="control-button-text">Home</div>
+                </div>
+                <div class="control-button" id="mapsButton">
+                    <img src="icebearg.PNG" alt="Друзья">
+                    <div class="control-button-text">Maps</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-   const fridgeButton = document.getElementById('fridgeButton');
-   const homeButton = document.getElementById('homeButton');
-   const mapsButton = document.getElementById('mapsButton');
-   const homeContent = document.getElementById('homeContent');
-   const catCountContent = document.getElementById('catCountContent');
-   const tasksContent = document.getElementById('tasksContent');
-   const fridgeContent = document.getElementById('fridgeContent');
-   const mapsImage = document.getElementById('mapsImage');
+    <script>
+        const fridgeButton = document.getElementById('fridgeButton');
+        const homeButton = document.getElementById('homeButton');
+        const mapsButton = document.getElementById('mapsButton');
+        const homeContent = document.getElementById('homeContent');
+        const catCountContent = document.getElementById('catCountContent');
+        const tasksContent = document.getElementById('tasksContent');
+        const fridgeContent = document.getElementById('fridgeContent');
+        const mapsImage = document.getElementById('mapsImage');
 
-   fridgeButton.addEventListener('click', () => {
-       homeContent.style.display = 'none';
-       catCountContent.style.display = 'none';
-       tasksContent.style.display = 'none';
-       fridgeContent.style.display = 'block';
-       mapsImage.style.display = 'none';
-   });
+        fridgeButton.addEventListener('click', () => {
+            homeContent.style.display = 'none';
+            catCountContent.style.display = 'none';
+            tasksContent.style.display = 'none';
+            fridgeContent.style.display = 'block';
+            mapsImage.style.display = 'none';
+        });
 
-   homeButton.addEventListener('click', () => {
-       homeContent.style.display = 'block';
-       catCountContent.style.display = 'block';
-       tasksContent.style.display = 'block';
-       fridgeContent.style.display = 'none';
-       mapsImage.style.display = 'none';
-   });
+        homeButton.addEventListener('click', () => {
+            homeContent.style.display = 'block';
+            catCountContent.style.display = 'block';
+            tasksContent.style.display = 'block';
+            fridgeContent.style.display = 'none';
+            mapsImage.style.display = 'none';
+        });
 
-   mapsButton.addEventListener('click', () => {
-       homeContent.style.display = 'none';
-       catCountContent.style.display = 'none';
-       tasksContent.style.display = 'none';
-       fridgeContent.style.display = 'none';
-       mapsImage.style.display = 'block';
-   });
+        mapsButton.addEventListener('click', () => {
+            homeContent.style.display = 'none';
+            catCountContent.style.display = 'none';
+            tasksContent.style.display = 'none';
+            fridgeContent.style.display = 'none';
+            mapsImage.style.display = 'block';
+        });
 
-</script>
+    </script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
