@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: 'junegull', sans-serif; /* Изменили шрифт body */
+            font-family: 'Roboto', sans-serif;
             text-align: center;
             margin: 0;
             background-color: rgb(255, 255, 255);
@@ -16,7 +16,6 @@
             background-attachment: fixed;
             overflow-x: hidden;
             position: relative;
-            color: rgb(0, 158, 219); /* Цвет текста для всего body */
         }
 
         .extraction-container {
@@ -124,9 +123,8 @@
 
         .control-button-text {
             font-size: 12px;
-            font-family: 'junegull'; /* Изменили шрифт .control-button-text */
+            font-family: "junegull";
             text-align: center;
-            color: rgb(0, 158, 219); /* Цвет текста для кнопок */
         }
 
         /* Media Queries for Responsive Design */
@@ -323,7 +321,7 @@
         <div class="row" id="catCountContent">
             <div class="col-12">
                 <div class="penguin-container">
-                    <img src="https://www.flagistrany.ru/data/flags/w1600/aq.png" alt="Antarctica Flag" class="antarctica-flag img-fluid mx-auto d-block">
+                    <img src="https://www.flagistrany.ru/data/flags/w1600/aq.png" alt="Antarctica Flag" class="antarctica-flag img-fluid mx-auto d-block"> 
                     <img src="vin.png" alt="tuxedo penguin" width="150" height="150" class="img-fluid mx-auto d-block">
                 </div>
                 <div class="extraction-container">
@@ -368,67 +366,68 @@
                    <div class="task">
                         <div class="task-title">Other task</div>
                         <div class="task-count">100 $PINGVI</div>
-                        <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
-                            <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить задание </span>  
-                        </a>
-                  </div>
-    
-               </div>
-               <button class="btn btn-secondary">Show more tasks</button>
-           </div>
-       </div>
-       <div class="row" id="fridgeContent" style="display: none;">
-           <div class="col-12 text-center">
-               <h2>Fridge</h2>
-               <ul id="fridgeList">
-                   <li>Milk</li>
-                   <li>Eggs</li>
-                   <li>Cheese</li>
-               </ul>
-           </div>
-       </div>
-    
-       <div class="control-panel">
-           <div class="control-buttons-container">
-               <div class="control-button" id="fridgeButton">
-                   <img src="холодос.PNG" alt="Холодильник">
-                   <div class="control-button-text">Fridge</div>
-               </div>
-               <div class="control-button" id="homeButton">
-                   <img src="home.PNG" alt="Домой">
-                   <div class="control-button-text">Home</div>
-               </div>
-               <div class="control-button" id="mapsButton">
-                   <img src="icebearg.PNG" alt="Друзья">
-                   <div class="control-button-text">Maps</div>
-               </div>
-           </div>
-       </div>
-    </div>
-    
-    <script>
-        const randomFactElement = document.getElementById('randomFact');
-        const facts = [
-            "Существует 18 видов пингвинов, каждый из которых имеет свои особенности.",
-            "Пингвины могут нырять на глубину до 500 метров и оставаться под водой до 20 минут.",
-            "Пингвины живут в колониях, насчитывающих сотни и даже тысячи особей.",
-            "Пингвины общаются друг с другом с помощью различных звуков и движений.",
-            "Пингвины не мёрзнут в холодной воде благодаря толстому слою жира и перьям, образующим водонепроницаемую оболочку.",
-            "Пингвины — социальные птицы и часто образуют пары на всю жизнь.",
-            "Глаза пингвинов устроены таким образом, что они могут видеть под водой и на суше."
-        ];
-    
-        function getRandomFact() {
-            const randomIndex = Math.floor(Math.random() * facts.length);
-            randomFactElement.textContent = facts[randomIndex];
-        }
-    
-        getRandomFact(); // Вызываем функцию при загрузке страницы
-    </script>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
-    </html>
+                       
+                       <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
+                        <span style="color: rgb(68, 224, 255);">нажми сюда чтобы выполнить задание </span>  
+                    </a>
+                </div>
+            
 
+           </div>
+           <button class="btn btn-secondary">Show more tasks</button>
+       </div>
+   </div>
+   <div class="row" id="fridgeContent" style="display: none;">
+       <div class="col-12 text-center">
+           <h2>Fridge</h2>
+           <ul id="fridgeList">
+               <li>Milk</li>
+               <li>Eggs</li>
+               <li>Cheese</li>
+           </ul>
+       </div>
+   </div>
+
+   <div class="control-panel">
+       <div class="control-buttons-container">
+           <div class="control-button" id="fridgeButton">
+               <img src="холодос.PNG" alt="Холодильник">
+               <div class="control-button-text">Fridge</div>
+           </div>
+           <div class="control-button" id="homeButton">
+               <img src="home.PNG" alt="Домой">
+               <div class="control-button-text">Home</div>
+           </div>
+           <div class="control-button" id="mapsButton">
+               <img src="icebearg.PNG" alt="Друзья">
+               <div class="control-button-text">Maps</div>
+           </div>
+       </div>
+   </div>
+</div>
+
+<script>
+    const randomFactElement = document.getElementById('randomFact');
+    const facts = [
+        "Существует 18 видов пингвинов, каждый из которых имеет свои особенности.",
+        "Пингвины могут нырять на глубину до 500 метров и оставаться под водой до 20 минут.",
+        "Пингвины живут в колониях, насчитывающих сотни и даже тысячи особей.",
+        "Пингвины общаются друг с другом с помощью различных звуков и движений.",
+        "Пингвины не мёрзнут в холодной воде благодаря толстому слою жира и перьям, образующим водонепроницаемую оболочку.",
+        "Пингвины — социальные птицы и часто образуют пары на всю жизнь.",
+        "Глаза пингвинов устроены таким образом, что они могут видеть под водой и на суше."
+    ];
+
+    function getRandomFact() {
+        const randomIndex = Math.floor(Math.random() * facts.length);
+        randomFactElement.textContent = facts[randomIndex];
+    }
+
+    getRandomFact(); // Вызываем функцию при загрузке страницы
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
