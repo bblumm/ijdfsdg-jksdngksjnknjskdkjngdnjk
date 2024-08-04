@@ -20,7 +20,7 @@
 
         .extraction-container {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 0; /* Убираем отступ сверху */
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
@@ -30,14 +30,14 @@
         .extraction-container img {
             width: 33.33px;
             height: auto;
-            margin-top: 10px;
+            margin-top: 5px; /* Уменьшаем отступ сверху */
             margin-bottom: 5px;
         }
 
         .extraction-item {
             display: flex;
             align-items: center;
-            margin: 0 10px;
+            margin: 0 5px; /* Уменьшаем отступ слева и справа */
         }
 
         .header {
@@ -260,6 +260,30 @@
             left: 50%; /* Позиционируем по центру по горизонтали */
             transform: translate(-50%, -50%); /* Выравниваем по центру */
             z-index: -1; /* Флаг позади пингвина */
+        }
+
+        /* Стили для секции extraction */
+        .extraction-container {
+            margin-top: 0; /* Убираем отступ сверху */
+        }
+
+        /* Стили для текста в секции extraction */
+        .extraction-container h4 {
+            margin-bottom: 5px; /* Уменьшаем отступ снизу */
+        }
+
+        .extraction-container p {
+            margin-bottom: 0; /* Убираем отступ снизу */
+        }
+
+        /* Стили для секции с пингвином */
+        .penguin-container {
+            margin-bottom: 0; /* Убираем отступ снизу */
+        }
+
+        /* Стили для секции с "extraction" */
+        .extraction-container {
+            margin-bottom: 0; /* Убираем отступ снизу */
         }
     </style>
 </head>
