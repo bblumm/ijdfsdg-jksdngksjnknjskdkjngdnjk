@@ -449,24 +449,31 @@
             <button class="btn btn-secondary">Show more tasks</button>
         </div>
     </div>
+    
     <div class="row" id="fridgeContent" style="display: none;">
         <div class="col-12 text-center">
             <div class="task" style="margin-bottom: 20px;">
                 <div class="task-title">Boost PINGVI channel</div>
                 <div class="task-count">50 CATS</div>
                 <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
-                    <span style="color: rgb(68, 224, 255);"> выполнить </span>  
+                    <span style="color: rgb(68, 224, 255);">выполнить</span>  
                 </a>
             </div>
-            
+            <div id="counter" style="font-size: 2em; color: rgb(49, 152, 255); margin-bottom: 30px;">0</div> 
             <div class="image-container">
                 <img src="vin.png" alt="tuxedo penguin" width="150" height="150" class="img-fluid mx-auto d-block">
+                <div id="timer" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">0</div>
             </div>
-            <div id="counter">0</div> <div id="timer">60</div>
+            
         </div>
     </div>
     
     <style>
+    @font-face {
+      font-family: 'Junegull';
+      src: url('fonts/junegull.ttf') format('truetype'); /* Replace with the actual path */
+    }
+    
     .image-container {
       position: relative;
       display: inline-block; /* For proper positioning within the list */
@@ -480,24 +487,61 @@
       transform: scale(1.1); /* Make the image slightly bigger on hover */
       cursor: pointer; /* Change the cursor to a pointer on hover */
     }
+    
+    .task, .task-title, .task-count, .button_1722621636632 span, #counter, #timer {
+      font-family: 'Junegull', sans-serif; 
+    }
+    
+    .task-title, .task-count, .button_1722621636632 span {
+      font-family: sans-serif; /* Default font for these elements */
+    }
+    
+    #timer {
+      font-family: 'Junegull', sans-serif; 
+    }
+    
+    #fridgeContent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     </style>
     
     <script>
       let counter = 0;
-      let timer = 60;
+      let timer = 0; // Start timer at 0 for forward counting
       let intervalId;
     
       const imageContainer = document.querySelector('.image-container');
       const counterElement = document.getElementById('counter');
       const timerElement = document.getElementById('timer');
     
+      // Touch events for mobile support
+      imageContainer.addEventListener('touchstart', () => {
+        intervalId = setInterval(() => {
+          counter += 15;
+          counterElement.textContent = counter;
+          timer++; // Increase timer value
+          timerElement.textContent = timer;
+          if (timer >= 60) { // Stop at 60 seconds
+            clearInterval(intervalId);
+            alert("Time's up!");
+          }
+        }, 1000); // 1 second interval
+      });
+    
+      imageContainer.addEventListener('touchend', () => {
+        clearInterval(intervalId);
+      });
+    
+      // Keep the 'mousedown' event for desktop support
       imageContainer.addEventListener('mousedown', () => {
         intervalId = setInterval(() => {
           counter += 15;
           counterElement.textContent = counter;
-          timer--;
+          timer++; // Increase timer value
           timerElement.textContent = timer;
-          if (timer <= 0) {
+          if (timer >= 60) { // Stop at 60 seconds
             clearInterval(intervalId);
             alert("Time's up!");
           }
@@ -512,6 +556,7 @@
         clearInterval(intervalId);
       });
     </script>
+    
     
  
     <div class="control-panel">
@@ -593,4 +638,3 @@
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </body>
 </html>
-
