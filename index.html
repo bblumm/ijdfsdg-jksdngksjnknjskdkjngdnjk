@@ -200,7 +200,19 @@
             opacity: 0.7;
             animation: fall 10s linear infinite;
         }
-
+        .image-container {
+            position: relative;
+            display: inline-block; /* For proper positioning within the list */
+          }
+          
+          .image-container img {
+            transition: transform 0.1s ease; /* Smooth transition for the hover effect */
+          }
+          
+          .image-container:hover img {
+            transform: scale(1.1); /* Make the image slightly bigger on hover */
+            cursor: pointer; /* Change the cursor to a pointer on hover */
+          }
         /* Анимация падения снежинок */
         @keyframes fall {
             0% {transform: translate(0, 0);
@@ -440,27 +452,73 @@
     <div class="row" id="fridgeContent" style="display: none;">
         <div class="col-12 text-center">
             <div class="task" style="margin-bottom: 20px;">
-                <div class="task-title">EVERY DAY TASKS  </div>
-                <div class="task-count">ㅤ</div>
-                <div class="task-count"></div>
+                <div class="task-title">Boost PINGVI channel</div>
+                <div class="task-count">50 CATS</div>
                 <a href="https://t.me/pingvigang" class="button_1722621636632" target="_blank">
-                    <span style="color: rgb(255, 255, 255);"> CHECK OUT OUR PLANS FOR</span> 
-
-                    <span style="color: rgba(255, 255, 255, 0.425);"> RUN THE TASKS !</span> 
+                    <span style="color: rgb(68, 224, 255);"> выполнить </span>  
                 </a>
             </div>
-            <h2>Fridge</h2>
-            <ul id="fridgeList">
-                <li>Milk</li>
-                <li>Eggs</li>
-                <li>Cheese</li>
-            </ul>
+            
+            <div class="image-container">
+                <img src="vin.png" alt="tuxedo penguin" width="150" height="150" class="img-fluid mx-auto d-block">
+            </div>
+            <div id="counter">0</div> <div id="timer">60</div>
         </div>
     </div>
+    
+    <style>
+    .image-container {
+      position: relative;
+      display: inline-block; /* For proper positioning within the list */
+    }
+    
+    .image-container img {
+      transition: transform 0.1s ease; /* Smooth transition for the hover effect */
+    }
+    
+    .image-container:hover img {
+      transform: scale(1.1); /* Make the image slightly bigger on hover */
+      cursor: pointer; /* Change the cursor to a pointer on hover */
+    }
+    </style>
+    
+    <script>
+      let counter = 0;
+      let timer = 60;
+      let intervalId;
+    
+      const imageContainer = document.querySelector('.image-container');
+      const counterElement = document.getElementById('counter');
+      const timerElement = document.getElementById('timer');
+    
+      imageContainer.addEventListener('mousedown', () => {
+        intervalId = setInterval(() => {
+          counter += 15;
+          counterElement.textContent = counter;
+          timer--;
+          timerElement.textContent = timer;
+          if (timer <= 0) {
+            clearInterval(intervalId);
+            alert("Time's up!");
+          }
+        }, 1000); // 1 second interval
+      });
+    
+      imageContainer.addEventListener('mouseup', () => {
+        clearInterval(intervalId);
+      });
+    
+      imageContainer.addEventListener('mouseout', () => {
+        clearInterval(intervalId);
+      });
+    </script>
+    
  
     <div class="control-panel">
         <div class="control-buttons-container">
             <div class="control-button" id="fridgeButton">
+ 
+    
                 <img src="https://raw.githubusercontent.com/bblumm/ijdfsdg-jksdngksjnknjskdkjngdnjk/main/холодос.png" alt="Холодильник">
                 <div class="control-button-text">Fridge</div>
             </div>
@@ -483,7 +541,7 @@
          "Пингвины могут нырять на глубину до 500 метров и оставаться под водой до 20 минут.",
          "Пингвины живут в колониях, насчитывающих сотни и даже тысячи особей.",
          "Пингвины общаются друг с другом с помощью различных звуков и движений.",
-         "Пингвины не мёрзнут в холодной воде благодаря толстому слою жира и перьям.",
+         "Пингвины не мёрзнут в холодной воде благодаря толстому слою жира и перьям, образующим водонепроницаемую оболочку.",
          "Пингвины — социальные птицы и часто образуют пары на всю жизнь.",
          "Глаза пингвинов устроены таким образом, что они могут видеть под водой и на суше."
      ];
@@ -535,5 +593,4 @@
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </body>
 </html>
-
 
